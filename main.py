@@ -1,3 +1,6 @@
+import os
+from time import sleep
+
 from bag import Bag
 from card import Card
 from player import Player
@@ -58,10 +61,12 @@ def main():
                     else:
                         players_list.remove(player)
                         print(f'\nЧисла {barrel} нет на карточке. Игрок №{player.number} проиграл')
+                        sleep(2)
                 if action_option == 'н':
                     if number_exists:
                         players_list.remove(player)
                         print(f'\nЧисло {barrel} есть на карточке. Игрок №{player.number} проиграл')
+                        sleep(2)
 
             if player.type == 'Компьютер':
                 if number_exists:
@@ -77,4 +82,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if 'script' in os.environ:
+        if os.environ['script'] == 'test':
+            os.system('pytest')
+    else:
+        main()

@@ -20,6 +20,7 @@ def player_type_validation(option):
 
 
 def action_validation(option):
+    option = option.replace('\udcd0', '').strip()
     if option.lower() in ['д', 'н']:
         return option.lower()
     raise ValueError('Неправильный вариант')
