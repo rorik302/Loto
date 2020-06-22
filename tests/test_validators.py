@@ -1,7 +1,7 @@
 from pytest import raises
 from random import randint
 
-from validators import int_option_validation, validate_players_count
+from game.validators import int_option_validation, validate_players_count
 
 def test_int_option_validation():
     assert isinstance(int_option_validation(5), int)

@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from bag import Bag
+from game.bag import Bag
 
 
 @fixture()

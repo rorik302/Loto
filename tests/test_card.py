@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from card import Card
+from game.card import Card
 
 
 @fixture()

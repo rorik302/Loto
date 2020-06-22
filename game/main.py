@@ -1,10 +1,19 @@
 import os
 from time import sleep
 
-from bag import Bag
-from card import Card
-from player import Player
-from validators import int_option_validation, validate_players_count, action_validation
+from game.bag import Bag
+from game.card import Card
+from game.player import Player
+from game.validators import int_option_validation, validate_players_count, action_validation
+
+
+def wrong_option(players, player, option, barrel):
+    if option == 'д':
+        print(f'\nЧисла {barrel} нет на карточке. {player} проиграл')
+    else:
+        print(f'\nЧисло {barrel} есть на карточке. {player} проиграл')
+    players.remove(player)
+    sleep(2)
 
 
 def main():
@@ -53,20 +62,16 @@ def main():
 
             if player.type == 'Человек':
                 action_option = action_validation(
-                    input(f'\nИгрок №{player.number}, зачеркнуть число? (д/н): ')
+                    input(f'\n{player}, зачеркнуть число? (д/н): ')
                 )
                 if action_option == 'д':
                     if number_exists:
                         card.cross(barrel)
                     else:
-                        players_list.remove(player)
-                        print(f'\nЧисла {barrel} нет на карточке. Игрок №{player.number} проиграл')
-                        sleep(2)
+                        wrong_option(players_list, player, action_option, barrel)
                 if action_option == 'н':
                     if number_exists:
-                        players_list.remove(player)
-                        print(f'\nЧисло {barrel} есть на карточке. Игрок №{player.number} проиграл')
-                        sleep(2)
+                        wrong_option(players_list, player, action_option, barrel)
 
             if player.type == 'Компьютер':
                 if number_exists:
@@ -78,7 +83,7 @@ def main():
                 winners.append(player)
 
     for winner in winners:
-        print(f'\nИгрок №{winner.number} победил.')
+        print(f'\n{winner} победил.')
 
 
 if __name__ == '__main__':
