@@ -1,13 +1,13 @@
 import os
 from time import sleep
 
-from game.bag import Bag
-from game.card import Card
-from game.player import Player
-from game.validators import int_option_validation, validate_players_count, action_validation
+from bag import Bag
+from card import Card
+from player import Player
+from validators import int_option_validation, validate_players_count, action_validation
 
 
-def wrong_option(players, player, option, barrel):
+def wrong_option(option, players, player, barrel):
     if option == 'д':
         print(f'\nЧисла {barrel} нет на карточке. {player} проиграл')
     else:
@@ -68,10 +68,10 @@ def main():
                     if number_exists:
                         card.cross(barrel)
                     else:
-                        wrong_option(players_list, player, action_option, barrel)
+                        wrong_option(action_option, players_list, player, barrel)
                 if action_option == 'н':
                     if number_exists:
-                        wrong_option(players_list, player, action_option, barrel)
+                        wrong_option(action_option, players_list, player, barrel)
 
             if player.type == 'Компьютер':
                 if number_exists:

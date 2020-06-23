@@ -1,4 +1,4 @@
-from game.validators import player_type_validation
+from validators import player_type_validation
 
 
 class Player:
